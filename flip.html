@@ -1,0 +1,466 @@
+< !DOCTYPE html>
+    <html>
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <style>
+            .btn {
+                width: 100px;
+                height: 30px;
+                color: white;
+                background-color: brown;
+                border: 1px solid black;
+            }
+
+            h2 {
+                /* float: left; */
+                margin: 5px 5px;
+                padding: 5px 5px;
+            }
+
+            .input {
+                height: 25px;
+                padding-left: 10px;
+                width: 200px;
+                font-family: monospace;
+            }
+
+            .list-klip {
+                border: 1px solid brown;
+                width: 400px;
+                margin: 5px 0px;
+                padding: 5px 5px;
+                display: grid;
+            }
+
+            body {
+                font - family: Arial, Helvetica, sans-serif;
+            }
+
+            .flip-box {
+                background - color: transparent;
+                width: 300px;
+                height: 200px;
+                border: 1px solid #f1f1f1;
+                perspective: 1000px;
+            }
+
+            .flip-box-front,
+            .flip-box-back {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                backface-visibility: hidden;
+            }
+
+            .flip-box-front {
+                background - color: #bbb;
+                color: black;
+            }
+
+            .flip-box-back {
+                background - color: dodgerblue;
+                color: white;
+                transform: rotateX(180deg);
+            }
+
+            .flip-box-inner {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                transition: transform 1.0s;
+                transform-style: preserve-3d;
+
+
+                animation-name: example;
+                /*/animation-duration: 10s;*/
+                animation-iteration-count: infinite;
+            }
+
+            @keyframes example {
+                20 % {
+                    transform: rotateX(0deg);
+                }
+
+                50% {
+                    transform: rotateX(180deg);
+                }
+
+                70% {
+                    transform: rotateX(180deg);
+                }
+
+                100% {
+                    transform: rotateX(0deg);
+                }
+            }
+
+            /*
+.flip-box:hover .flip-box-inner {
+                        transform: rotateX(180deg);
+                  }
+                  */
+        </style>
+    </head>
+
+    <body>
+        <div style="width: 95%;" class="klip-main">
+            <!-- <div class="flip-box">
+                        <div class="flip-box-inner">
+                            <div class="flip-box-front"> -->
+            <h2>Klip 1</h2>
+            <!--  </div>
+                            <div class="flip-box-back"> -->
+            <h2>Klip 2</h2>
+            <!-- </div>
+                        </div>
+                    </div> -->
+
+            <!-- <div class="flip-box">
+                        <div class="flip-box-inner">
+                            <div class="flip-box-front"> -->
+            <h2>Klip 3</h2>
+            <!-- </div>
+                            <div class="flip-box-back"> -->
+            <h2>Klip 4</h2>
+            <!-- </div>
+                        </div>
+                    </div> -->
+
+            <!-- <div class="flip-box">
+                        <div class="flip-box-inner">
+                            <div class="flip-box-front"> -->
+            <h2>Klip 5</h2>
+            <!-- </div>
+                            <div class="flip-box-back"> -->
+            <h2>Klip 6</h2>
+            <!-- </div>
+                        </div>
+                    </div> -->
+
+            <!-- <div class="flip-box">
+                        <div class="flip-box-inner">
+                            <div class="flip-box-front"> -->
+            <h2>Klip 7</h2>
+            <!-- </div>
+                            <div class="flip-box-back"> -->
+            <h2>Klip 8</h2>
+            <!-- </div>
+                        </div>
+                    </div> -->
+
+            <!-- <div class="flip-box">
+                        <div class="flip-box-inner">
+                            <div class="flip-box-front"> -->
+            <h2>Klip 9</h2>
+            <!-- </div>
+                            <div class="flip-box-back"> -->
+            <h2>Klip 10</h2>
+            <!-- </div>
+                        </div>
+                    </div> -->
+
+            <!-- <div class="flip-box">
+                        <div class="flip-box-inner">
+                            <div class="flip-box-front"> -->
+            <h2>Klip 11</h2>
+            <!-- </div>
+                            <div class="flip-box-back"> -->
+            <h2>Klip 12</h2>
+            <!-- </div>
+                        </div>
+                    </div> -->
+        </div>
+        <div class="list-klip"></div>
+        <div style="width: 500px;float: left;margin-bottom:20px;">
+            <fieldset style="height: 110px;">
+                <legend>Combine Multiple Flip</legend>
+                <div style="margin: 10px 0px;">
+                    <input type="number" name="delay" class="input" id="delay" placeholder="Enter miliseconds" />
+                    <!-- <input type="submit" name="btn" class="btn" value="SET TIME" id="btn" /> -->
+                </div>
+                <div style="margin: 10px 0px;">
+                    <input type="text" name="classId" class="input" id="classId" placeholder="Enter Class Name" />
+                    <input type="submit" name="btn1" class="btn" value="Submit" id="btn1" />
+                </div>
+            </fieldset>
+        </div>
+        <div class="merge" style="width: 500px;float: left;margin-bottom:20px;">
+            <fieldset style="height: 110px;">
+                <legend>Merge Klip For Flip</legend>
+                <input type="text" name="class-name" class="input" id="class-name" placeholder="Enter class name" />
+                <input type="submit" name="btn2" class="btn" value="Merge" id="btn2" />
+            </fieldset>
+        </div>
+        <script>
+            var data = JSON.parse(localStorage.getItem('data'));
+            class operation {
+                constructor(interval, singleFlip) {
+                    //console.log(interval, singleFlip);
+                    $('.flip-box-inner').ready(function () {
+                        try {
+                            var elements = [];
+                            for (var i = 0; i < $('head style')[0].sheet.rules.length; i++) {
+                                if ($('head style')[0].sheet.rules[i].selectorText == '.flip-box-inner') {
+                                    var dta = { 'animation-duration': (interval / 1000) + 's' };
+                                    //console.log(
+                                    $.extend(true, $('head style')[0].sheet.rules[i].style, dta);
+                                    //);
+                                }
+                            }
+
+                            //$("<style> .flip-box-inner{ animation-duration:" + interval + "s;} </style>").appendTo("head");
+                            //$('.flip-box-inner').css('animation-duration',interval+'s');
+                            //console.log($(singleFlip), singleFlip);
+                            $(singleFlip).each(function () {
+                                elements.push({ el: $(this), display: 'hide' });
+                                $(this).hide();
+                            });
+
+                            var i = 0;
+                            elements[i].el.show();
+                            elements[i].display = 'show';
+
+                            inter.push({
+                                'class': singleFlip, 'operation': setInterval(function () {
+                                    //console.log(inter);
+                                    //if (findKeyValueIndex(elements, 'display', 'show') != undefined) {
+                                    try {
+                                        i = findKeyValueIndex(elements, 'display', 'show');
+                                        //console.log(elements[0], i);
+                                        hide(elements[i].el);
+                                        elements[i].display = 'hide';
+
+                                        i++;
+                                        show(elements[i].el);
+                                        elements[i].display = 'show';
+                                    }
+                                    catch (err) {
+                                        i = 0;
+                                        elements[i].el.show();
+                                        elements[i].display = 'show';
+                                    }
+                                    //}
+                                }, interval)
+                            });
+                        } catch (err) { }
+                    });
+                }
+            }
+            //var interval = 0;
+            var inter = [];
+            var operationArray = [];
+            function findKeyValueIndex(object, key, value) {
+                if (value == undefined)
+                    return;
+                for (var i in object) {
+                    if (object[i][key] == value) {
+                        return i;
+                    }
+                }
+            }
+
+            // function findKeyIndex(object, key) {
+            //     if (key == undefined)
+            //         return;
+            //     for (var i in object) {
+            //         if (object[i] == key) {
+            //             return i;
+            //         }
+            //     }
+            // }
+
+            function hide(el) {
+                return $(el).hide();
+            }
+            function show(el) {
+                return $(el).show();
+            }
+
+            function getTag(element) {
+                $(element).each(function (index) {
+                    var div = $('<div/>')
+                        .addClass('check-item')
+                        .appendTo($('.list-klip'));
+
+                    var input = $('<input/>')
+                        .addClass('check-box')
+                        .attr({ 'type': 'checkbox', 'id': 'check-' + (index + 1), 'value': $(this).text() })
+                        .appendTo(div);
+                    $('<label/>')
+                        .addClass('check-label')
+                        .attr({ 'for': 'check-' + (index + 1) })
+                        .text($(this).text())
+                        .appendTo(div);
+                });
+
+                $('input[type=checkbox]').change(function () {
+                    if ($(this).is(':checked')) {
+                        if ($('input[type=checkbox]:checked').length == 2) {
+                            $('input[type=checkbox]').each(function (index) {
+                                if (!$(this).is(':checked')) {
+                                    $(this).prop('disabled', true);
+                                }
+                                if ($('input[type=checkbox]').length == (index + 1)) {
+                                    $('.merge').show();
+                                }
+                            })
+                        } else { }
+                    } else if ($('input[type=checkbox]:checked').length < 2) {
+                        $('.merge').hide();
+                        $('input[type=checkbox]').each(function () {
+                            if (!$(this).is(':checked')) {
+                                $(this).removeAttr("disabled");
+                            }
+                        });
+                    }
+                });
+            }
+
+            function setTag(operationArray, clearInterval, inter, load) {
+
+                if (findKeyValueIndex(operationArray, 'class', $('#classId').val())) {
+                    //console.log(inter, operationArray);
+                    //clearInterval()
+                }
+                else if (findKeyValueIndex(operationArray, 'class', $('#classId').val())) {
+                    alert('Class id already set');
+                } else if ($('#classId').val() != '' && !load) {
+                    var dat = $('#classId').val();
+                    var index = findKeyValueIndex(operationArray, 'class_name', $('#classId').val());
+
+                    operationArray[index].obj = new operation($('#delay').val(), '.' + dat);
+                    operationArray[index].delay = $('#delay').val();
+                    localStorage.setItem('data', JSON.stringify(operationArray));
+                    //console.log(operationArray[index], index);
+                } else
+                    if (load) {
+                        var classArray = [];
+                        operationArray.forEach((element, index) => {
+                            if (!findKeyValueIndex(classArray, 'class_name', element.class_name)) {
+                                classArray.push({ class_name: element.class_name, delay: element.delay });
+                                //new operation(element.delay, '.' + element.class_name)
+                            } else {
+                                //console.log(classArray[findKeyValueIndex(classArray, 'class_name', element.class_name)].delay, '.' + classArray[findKeyValueIndex(classArray, 'class_name', element.class_name)].class_name);
+                                new operation(classArray[findKeyValueIndex(classArray, 'class_name', element.class_name)].delay, '.' + classArray[findKeyValueIndex(classArray, 'class_name', element.class_name)].class_name)
+                            }
+                        });
+                    }
+            }
+
+            function merge(class_name, operationArray, load) {
+                var checkboxArray = [];
+                if (!load) {
+                    var div_parent = $('<div />').addClass('flip-box ' + class_name).appendTo($('.klip-main'));
+                    var div_child = $('<div />').addClass('flip-box-inner').appendTo(div_parent);
+                    var div_inner_child1 = $('<div />').addClass('flip-box-front').appendTo(div_child);
+                    var div_inner_child2 = $('<div />').addClass('flip-box-back').appendTo(div_child);
+                    $('input[type=checkbox]:checked').each(function (index) {
+                        checkboxArray.push({ val: $(this).val() });
+                        var text = $(this).val();
+                        //console.log($('.klip-main').children(), text);
+                        $(this).parent().remove();
+                        if (index == 0) {
+                            $('.klip-main').children().each(function () {
+                                if ($(this).html() == text) {
+                                    $(this).appendTo(div_inner_child1);
+                                }
+                            });
+                        }
+                        else {
+                            $('.klip-main').children().each(function () {
+                                if ($(this).html() == text) {
+                                    $(this).appendTo(div_inner_child2);
+                                }
+                            });
+                        }
+                    });
+                    //console.log(checkboxArray, JSON.stringify(checkboxArray));
+                    operationArray.push({ class_name: class_name, checkbox: checkboxArray, obj: null, delay: null });
+
+                } else {
+                    operationArray.forEach((element, index) => {
+                        //console.log(element);
+                        var div_parent1 = $('<div/>').addClass('flip-box ' + element.class_name).appendTo($('.klip-main'));
+                        var div_child1 = $('<div/>').addClass('flip-box-inner').appendTo(div_parent1);
+                        var div_inner_child1_1 = $('<div/>').addClass('flip-box-front').appendTo(div_child1);
+                        var div_inner_child2_1 = $('<div/>').addClass('flip-box-back').appendTo(div_child1);
+                        //$('input[type=checkbox]:checked').each(function (index) {
+                        element.checkbox.forEach((el, ind) => {
+                            //console.log($('input[value="'+el.val+'"]'));
+                            var ele = $('input[value="' + el.val + '"]');
+                            var text = ele.val();
+                            //console.log($('.klip-main').children(), text);
+                            //console.log(ele, text);
+                            ele.parent().remove();
+                            if (ind == 0) {
+                                $('.klip-main').children().each(function () {
+                                    if ($(this).html() == text) {
+                                        $(this).appendTo(div_inner_child1_1);
+                                    }
+                                });
+                            } else {
+                                $('.klip-main').children().each(function () {
+                                    if ($(this).html() == text) {
+                                        $(this).appendTo(div_inner_child2_1);
+                                    }
+                                });
+                            }
+                        });
+                        //});
+                    });
+                }
+            }
+            //operation(10000, '.flip1');
+            $('.merge').hide();
+            getTag('h2');
+
+            //console.log(operationArray.length);
+            if (data && data != '') {
+                operationArray = data;
+            }
+            try {
+                if (operationArray.length > 0) {
+                    merge('', operationArray, true);
+                    setTag(operationArray, clearInterval, inter, true);
+                }
+            } catch (error) { }
+
+
+            $('#btn1').click(function () {
+                //clearInterval(inter);
+                if ($('#delay').val() == '') {
+                    alert('Please enter time in miliseconds');
+                } else if ($('#classId').val() == '') {
+                    alert('Please enter ID');
+                } else {
+                    setTag(operationArray, clearInterval, inter, false);
+                }
+            });
+
+            $('#btn2').click(function () {
+                var class_name = $('#class-name').val();
+
+                if (class_name == '') {
+                    alert('Please enter class name');
+                    $('#class-name').focus();
+                } else {
+                    $('.merge').hide();
+                    merge(class_name, operationArray, false);
+
+
+                    $('input[type=checkbox]').each(function () {
+                        if (!$(this).is(':checked')) {
+                            $(this).removeAttr("disabled");
+                        }
+                    });
+                }
+            });
+
+        </script>
+    </body>
+
+    </html>
