@@ -7,4 +7,5 @@ step3:  Enter class name and click on merge button. It will merge 2 selected kli
 step4:  In "Combine Multiple Flip" set the delay time in miliseconds and the class name that you entered in "step 3". <br>
         It will initiate flip and you can see flip card at the time intervel you set.<br>
 </p>
-Note: you can use same "class name" from step3 to combine 2 or more flip card.
+<br>
+<b>Note: you can use same "class name" from step3 to combine 2 or more flip card.</b>
